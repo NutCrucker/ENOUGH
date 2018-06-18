@@ -19,7 +19,6 @@ namespace SeleniumingIT.PageObjects
 
         public void Post(string path)
         {
-            TextBox.Click();
             TextBox.SendKeys(File.ReadAllText(path));
             System.Threading.Thread.Sleep(2000);
             PostButton.Click();

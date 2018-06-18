@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SeleniumingIT
 {
-    public class Method
+    public class fakeMethods
     {
 
         public IWebDriver driver;
@@ -22,7 +22,7 @@ namespace SeleniumingIT
         private MainPageObjects MainObjects = new MainPageObjects();
         private SimpleMethods method = new SimpleMethods();
         private WebDriverWait wait;
-        
+
         public void LoadDriver()
         {
             ChromeOptions options = new ChromeOptions();
@@ -61,7 +61,6 @@ namespace SeleniumingIT
         {
             LaunchFacebook();
             LoginObjects.Login(user.email, user.password);
-            CorrectLogin(user);
         }
         public void ignorePrem()
         {
@@ -93,11 +92,11 @@ namespace SeleniumingIT
                 name = Console.ReadLine();
                 GoToGroup(name);
             }
-            
+
         }
         public void Post(string path)
         {
-            if (method.ValidateGroup())
+            if (true)
             {
                 GroupObjects.Post(path);
                 Console.WriteLine("Posted! Going back to the main page.");
@@ -128,3 +127,4 @@ namespace SeleniumingIT
         }
     }
 }
+

@@ -17,3 +17,4 @@ C:\Users\Tomer\source\repos\SeleniumingIT\SeleniumingIT\bin\Debug\SeleniumingIT.
 C:\Users\Tomer\source\repos\SeleniumingIT\SeleniumingIT\obj\Debug\SeleniumingIT.exe
 C:\Users\Tomer\source\repos\SeleniumingIT\SeleniumingIT\bin\Debug\WebDriver.Support.dll
 C:\Users\Tomer\source\repos\SeleniumingIT\SeleniumingIT\bin\Debug\WebDriver.Support.xml
+C:\Users\Tomer\source\repos\SeleniumingIT\SeleniumingIT\bin\Debug\SeleniumingIT.exe.config

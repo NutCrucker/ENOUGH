@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,17 @@ namespace SeleniumingIT.Methods
         public string GetPath()
         {
             Console.WriteLine("Please insert the path of the message you would like to post: ");
-            return Console.ReadLine();
+            string path = Console.ReadLine();
+            try 
+            {
+                File.ReadAllText(path);
+                return path;
+            }
+            catch
+            {
+                Console.WriteLine("Not valid path!");
+                return GetPath();
+            }
         }
         public Group[] SetGroups()
         {
@@ -54,6 +65,7 @@ namespace SeleniumingIT.Methods
             if (Int32.TryParse(Console.ReadLine(), out NumOfGroups)) { }
             else
             {
+                Console.WriteLine("Invalid Answer, In how much groups would you like to post?");
                 while (!Int32.TryParse(Console.ReadLine(), out NumOfGroups))
                 {
                     Console.WriteLine("Invalid Answer, In how much groups would you like to post?");
