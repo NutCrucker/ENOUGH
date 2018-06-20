@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace SeleniumingIT.Methods
 {
-    public class fakeSimpleMethods
+    public class fakeSimpleMethods:SimpleMethods
     {
 
-        public string[] Answers = { "Y", "N" };
         public bool ValidateGroup(string answer)
         {
             if (answer == "Y") return true;
@@ -38,6 +37,16 @@ namespace SeleniumingIT.Methods
             }
             return answer;
         }
+        public bool ValidAnswer_Invalid()
+        {
+            Console.WriteLine("Is this the group you wanted to post at?[Y/N]");
+            string answer = "F";
+            if (!Answers.Contains(answer))
+            {
+                return true;
+            }
+            else return false;
+        }
         public string GetPath(string path)
         {
             try
@@ -48,8 +57,26 @@ namespace SeleniumingIT.Methods
             catch
             {
                 Console.WriteLine("Not valid path!");
-                return "";
+                return null;
             }
+        }
+        public new string getGroupName()
+        {
+            return "X";
+        }
+        public new int getNumOfGroups()
+        {
+            return 3;
+        }
+        public new Group[] SetGroups()
+        {
+            Group[] groups = new Group[getNumOfGroups()];
+            for (int i = 0; i < groups.Length; i++)
+            {
+                groups[i] = new Group();
+                groups[i].name = getGroupName();
+            }
+            return groups;
         }
     }
 }

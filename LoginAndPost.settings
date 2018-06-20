@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SeleniumingIT" GeneratedClassName="LoginAndPost">
+  <Profiles />
+  <Settings>
+    <Setting Name="correctEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">tomerezon@gmail.com</Value>
+    </Setting>
+    <Setting Name="correctPass" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">vpugk,ktchc</Value>
+    </Setting>
+    <Setting Name="correctPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\\Users\\Tomer\\Desktop\\Was.txt</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -17,11 +17,11 @@ namespace SeleniumingIT
     {
 
         public IWebDriver driver;
-        private LoginObjects LoginObjects = new LoginObjects();
+        protected LoginObjects LoginObject = new LoginObjects();
         public GroupsObjects GroupObjects = new GroupsObjects();
-        private MainPageObjects MainObjects = new MainPageObjects();
-        private SimpleMethods method = new SimpleMethods();
-        private WebDriverWait wait;
+        protected MainPageObjects MainObjects = new MainPageObjects();
+        protected SimpleMethods method = new SimpleMethods();
+        protected WebDriverWait wait;
         
         public void LoadDriver()
         {
@@ -30,7 +30,7 @@ namespace SeleniumingIT
             options.AddExcludedArgument("ignore-certificate-errors");
             driver = new ChromeDriver();
             wait = new WebDriverWait(driver, new TimeSpan(0, 0, 30));
-            PageFactory.InitElements(driver, LoginObjects);
+            PageFactory.InitElements(driver, LoginObject);
             PageFactory.InitElements(driver, MainObjects);
             PageFactory.InitElements(driver, GroupObjects);
         }
@@ -60,7 +60,7 @@ namespace SeleniumingIT
         public void LoginToFacebook(User user)
         {
             LaunchFacebook();
-            LoginObjects.Login(user.email, user.password);
+            LoginObject.Login(user.email, user.password);
             CorrectLogin(user);
         }
         public void ignorePrem()

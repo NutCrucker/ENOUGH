@@ -15,7 +15,7 @@ namespace SeleniumingIT
 {
     public class MainPageTests
     {
-        private SimpleMethods smethod = new SimpleMethods();
+        
         private fakeMethods method = new fakeMethods();
         [SetUp]
         public void LoadDriver()

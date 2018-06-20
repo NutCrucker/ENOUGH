@@ -63,9 +63,17 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Facebook.settings</DependentUpon>
     </Compile>
-    <Compile Include="MethodsFld\fakeSimpleMethods.cs" />
+    <Compile Include="LoginAndPost.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>LoginAndPost.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Test\FakeMethods\fakeSimpleMethods.cs" />
+    <Compile Include="Test\FakeObjects\FakePost.cs" />
+    <Compile Include="Test\FakeObjects\FakeUser.cs" />
+    <Compile Include="Test\EndtoEndTest.cs" />
     <Compile Include="Test\MainPageTests.cs" />
-    <Compile Include="MethodsFld\fakeMethods.cs" />
+    <Compile Include="Test\FakeMethods\fakeMethods.cs" />
     <Compile Include="MethodsFld\SimpleMethods.cs" />
     <Compile Include="MethodsFld\Method.cs" />
     <Compile Include="Objects\Post.cs" />
@@ -77,13 +85,17 @@
     <Compile Include="Objects\Group.cs" />
     <Compile Include="Objects\User.cs" />
     <Compile Include="Test\LaunchTests.cs" />
-    <Compile Include="Test\SimpleTests.cs" />
+    <Compile Include="Test\ObjectTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Facebook.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Facebook.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="LoginAndPost.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>LoginAndPost.Designer.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

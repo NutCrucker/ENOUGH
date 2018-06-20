@@ -39,7 +39,7 @@ namespace SeleniumingIT.Methods
             }
             catch
             {
-                Console.WriteLine("Not valid path!");
+                Console.WriteLine("Not a valid path!");
                 return GetPath();
             }
         }
