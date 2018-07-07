@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SeleniumingIT.PageObjects
 {
-    public class MainPageObjects
+    public class MainPageObject
     {
         [FindsBy(How = How.Name, Using = "q")]
         private IWebElement Search { get; set; }
@@ -20,10 +20,12 @@ namespace SeleniumingIT.PageObjects
         {
             MainPageButton.Click();
         }
+
         public void ClickSearchBar()
         {
             Search.Click();
         }
+
         public void SearchGroup(string name)
         {
             ClickSearchBar();

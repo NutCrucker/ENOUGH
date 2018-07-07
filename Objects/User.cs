@@ -9,35 +9,36 @@ namespace SeleniumingIT
 {
     public class User
     {
-        public string email { get; set; }
-        public string password { get; set; }
-        public Post post { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public Post Post { get; set; }
         private Method method = new Method();
-
+        public void Build(string email,string password,Post post)
+        {
+            this.Email = email;
+            this.Password = password;
+            this.Post = post;
+        }
         public void Init()
         {
-            setEmail();
-            setPass();
-            setPost();
+            SetEmail();
+            SetPass();
+            SetPost();
         }
-        public void setEmail()
+        public void SetEmail()
         {
             Console.WriteLine("Please insert your Email: ");
-            email = Console.ReadLine();
+            Email = Console.ReadLine();
         }
-        public void setPass()
+        public void SetPass()
         {
             Console.WriteLine("Please insert your Password: ");
-            password = Console.ReadLine();
+            Password = Console.ReadLine();
         }
-        public void setPost()
+        public void SetPost()
         {
-            post = new Post();
-            post.Init();
-        }
-        public Group[] Groups()
-        {
-            return post.groups;
+            Post = new Post();
+            Post.init();
         }
     }
 }

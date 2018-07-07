@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using SeleniumingIT.Methods;
+using SeleniumingIT.Objects;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,17 +16,14 @@ namespace SeleniumingIT
 {
     public class MainPageTests
     {
-        
-        private fakeMethods method = new fakeMethods();
+        User user = new User();
+        private Method method = new Method();
         [SetUp]
         public void LoadDriver()
         {
-            User user = new User();
-            user.email = "tomerezon@gmail.com";
-            user.password = "vpugk,ktchc";
+            user.Build(LoginAndPost.Default.correctEmail, LoginAndPost.Default.correctPass, new Post());
             method.LoginToFacebook(user);
         }
-
         [TearDown]
         public void UnloadDriver()
         {
@@ -54,9 +52,9 @@ namespace SeleniumingIT
         [TestCase]
         public void Post_Correctly()
         {
-            method.GoToGroup("מאליה");
-            System.Threading.Thread.Sleep(2000);
-            method.Post("C:/Users/Tomer/Desktop/Was.txt");
+            method.driver.Navigate().GoToUrl("https://www.facebook.com/groups/1406198856328709/?ref=bookmarks");
+            method.ignorePrem();
+            method.GroupObjects.Post("C:/Users/Tomer/Desktop/Was.txt");
         }
     }
 }

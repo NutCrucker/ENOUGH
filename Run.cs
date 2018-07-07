@@ -12,8 +12,19 @@ namespace SeleniumingIT
         static void Main(string[] args)
         {
             Method method = new Method();
+
             method.StartPosting(new User());
             System.Windows.Forms.Application.Exit();
+
+
+            UserInterrogator userInterrogator = new UserInterrogator();
+
+            RunDetails runDetails = userInterrogator.AskUserForDetails();
+            GroupPoster groupPoster = GroupPosterFactory.GetGroupPoster();
+
+            //groupPoster.StartPosting(runDetails);
+
+            
         }
     }
 }

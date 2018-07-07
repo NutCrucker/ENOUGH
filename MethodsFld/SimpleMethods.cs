@@ -28,22 +28,7 @@ namespace SeleniumingIT.Methods
             }
             return answer;
         }
-        public string GetPath()
-        {
-            Console.WriteLine("Please insert the path of the message you would like to post: ");
-            string path = Console.ReadLine();
-            try 
-            {
-                File.ReadAllText(path);
-                return path;
-            }
-            catch
-            {
-                Console.WriteLine("Not a valid path!");
-                return GetPath();
-            }
-        }
-        public Group[] SetGroups()
+        public virtual Group[] SetGroups()
         {
             Group[] groups = new Group[getNumOfGroups()];
             for (int i = 0; i < groups.Length; i++)

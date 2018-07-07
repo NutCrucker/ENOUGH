@@ -4,6 +4,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using SeleniumingIT.Methods;
+using SeleniumingIT.Objects;
 using SeleniumingIT.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,9 @@ namespace SeleniumingIT
     {
 
         public IWebDriver driver;
-        protected LoginObjects LoginObject = new LoginObjects();
-        public GroupsObjects GroupObjects = new GroupsObjects();
-        protected MainPageObjects MainObjects = new MainPageObjects();
+        public LoginObject LoginObject = new LoginObject();
+        public GroupsObject GroupObjects = new GroupsObject();
+        public MainPageObject MainObjects = new MainPageObject();
         protected SimpleMethods method = new SimpleMethods();
         protected WebDriverWait wait;
         
@@ -34,12 +35,14 @@ namespace SeleniumingIT
             PageFactory.InitElements(driver, MainObjects);
             PageFactory.InitElements(driver, GroupObjects);
         }
+
         public void UnloadDriver()
         {
             driver.Quit();
             Console.WriteLine("TearDown Finished Successfully");
         }
-        //LaunchMethods
+
+        #region Launch Methods
         public void LaunchFacebook()
         {
             LoadDriver();
@@ -50,8 +53,8 @@ namespace SeleniumingIT
             if (driver.Title != "Facebook" && driver.Title != "פייסבוק")
             {
                 Console.WriteLine("Invalid login details, please try again");
-                user.setEmail();
-                user.setPass();
+                user.SetEmail();
+                user.SetPass();
                 UnloadDriver();
                 LoginToFacebook(user);
             }
@@ -60,7 +63,7 @@ namespace SeleniumingIT
         public void LoginToFacebook(User user)
         {
             LaunchFacebook();
-            LoginObject.Login(user.email, user.password);
+            LoginObject.Login(user.Email, user.Password);
             CorrectLogin(user);
         }
         public void ignorePrem()
@@ -69,7 +72,9 @@ namespace SeleniumingIT
             Actions builder = new Actions(driver);
             builder.MoveToElement(driver.FindElement(By.Id("blueBarDOMInspector")), 10, 25).Click().Build().Perform();
         }
-        //MainMethods
+        #endregion
+
+        #region Main Methods
         public void ReturnToMain()
         {
             MainObjects.GoToMainPage();
@@ -77,7 +82,10 @@ namespace SeleniumingIT
         public void Search(string name)
         {
             MainObjects.SearchGroup(name);
-        }
+        } 
+        #endregion
+        
+
         //PostMethods
         public void GoToGroup(string name)
         {
@@ -109,10 +117,10 @@ namespace SeleniumingIT
         }
         public void PostOnGroups(User user)
         {
-            for (int i = 0; i < user.Groups().Length; i++)
+            for (int i = 0; i < user.Post.groups.Length; i++)
             {
-                GoToGroup(user.Groups()[i].name);
-                Post(user.post.path);
+                GoToGroup(user.Post.groups[i].name);
+                Post(user.Post.path);
                 ReturnToMain();
             }
         }
@@ -125,6 +133,28 @@ namespace SeleniumingIT
             Console.WriteLine("Finished posting. Thank you for using the app!");
             UnloadDriver();
             Console.ReadKey();
+        }
+        public void TestableEndtoEnd(User user)
+        { 
+            user.Build(LoginAndPost.Default.correctEmail, LoginAndPost.Default.correctPass, new Post());
+            user.Post.Build(LoginAndPost.Default.correctPath, new Group[1]);
+            user.Post.groups[0] = new Group();
+            user.Post.groups[0].name = "מאליה";
+            LoginToFacebook(user);
+            for (int i = 0; i < user.Post.groups.Length; i++)
+            {
+                GoToGroup(user.Post.groups[i].name);
+                System.Threading.Thread.Sleep(2000);
+                GroupObjects.Post(user.Post.path);
+                ReturnToMain();
+            }
+        }
+        public bool LoginFailEndtoEnd(User user)
+        {
+            LaunchFacebook();
+            LoginObject.Login(user.Email, user.Password);
+            if (driver.Title != "Facebook" && driver.Title != "פייסבוק") return true;
+            return false;
         }
     }
 }

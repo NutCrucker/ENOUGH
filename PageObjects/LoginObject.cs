@@ -14,7 +14,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace SeleniumingIT
 {
-    public class LoginObjects
+    public class LoginObject
     {
         [FindsBy(How = How.Id, Using = "pass")]
         private IWebElement Password { get; set; }

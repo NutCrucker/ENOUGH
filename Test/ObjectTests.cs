@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
+using SeleniumingIT.Methods;
 using SeleniumingIT.Objects;
 using System;
 using System.Collections.Generic;
@@ -10,55 +12,42 @@ namespace SeleniumingIT.Test
 {
     public class ObjectTests
     {
-        FakeUser user = new FakeUser();
-        FakePost post = new FakePost();
+        User user = new User();
+        Post post = new Post();
+        public Group[] setGroups()
+        {
+            Mock<SimpleMethods> mock = new Mock<SimpleMethods>();
+            mock.Setup(x => x.SetGroups()).Returns(new Group[3]);
+            return mock.Object.SetGroups();
+        }
         [TestCase]
         public void Post_SetPath_Check()
         {
-            post.setPath(LoginAndPost.Default.correctPath);
-            Assert.IsNotEmpty(post.path);
+            post.Build(LoginAndPost.Default.correctPath,new Group[1]);
         }
         [TestCase]
+        [ExpectedException(typeof(Exception), ExpectedMessage = "Incorrect path")]
         public void Post_SetPath_NotValidPath()
         {
-            post.setPath("C");
-            Assert.IsNull(post.path);
+            post.Build(post.TestPath("111"), new Group[1]);
         }
         [TestCase]
         public void Post_SetGroups_Check()
         {
-            post.setGroups();
+            post.Build("",setGroups());
             Assert.IsNotNull(post.groups);
         }
         [TestCase]
         public void Post_Init_Check()
         {
-            post.Init(LoginAndPost.Default.correctPath);
-            if (post.path != null && post.groups != null) Assert.Pass();
-        }
-        [TestCase]
-        public void User_SetEmail()
-        {
-            user.setEmail("Email");
-            Assert.IsNotNull(user.email);
-        }
-        [TestCase]
-        public void User_SetPass()
-        {
-            user.setPass("Pass");
-            Assert.IsNotNull(user.password);
-        }
-        [TestCase]
-        public void User_SetPost()
-        {
-            user.setPost(LoginAndPost.Default.correctPath);
-            Assert.IsNotNull(user.post);
+            post.Build(LoginAndPost.Default.correctPath,setGroups());
+            if (post.path == null || post.groups == null) Assert.Fail();
         }
         [TestCase]
         public void User_Init()
         {
-            user.Init(LoginAndPost.Default.correctEmail, LoginAndPost.Default.correctPass, LoginAndPost.Default.correctPath);
-            if(user.email != null && user.password != null && user.post != null) Assert.Pass();
+            user.Build("","",new Post());
+            if(user.Email == null || user.Password == null || user.Post == null) Assert.Fail();
         }
     }
 }

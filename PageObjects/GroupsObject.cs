@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SeleniumingIT.PageObjects
 {
-    public class GroupsObjects
+    public class GroupsObject
     {
         [FindsBy(How = How.Name, Using = "xhpc_message_text")]
         private IWebElement TextBox { get; set; }
